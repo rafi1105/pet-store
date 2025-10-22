@@ -1,0 +1,195 @@
+import React, { useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { useSpring, animated } from '@react-spring/web';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendar, FaEdit, FaCheckCircle, FaClock, FaExclamationCircle } from 'react-icons/fa';
+
+const MyProfile = () => {
+  const { user, isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
+  // Default user data if not logged in
+  const displayUser = user || {
+    displayName: 'Guest User',
+    email: 'guest@example.com',
+    avatar: 'https://i.pravatar.cc/150?img=3',
+    phone: '+1 (555) 123-4567',
+    address: '123 Pet Street, Animal City, PC 12345',
+    memberSince: 'January 2024'
+  };
+
+  const bookings = [
+    {
+      id: 1,
+      serviceName: 'Winter Coat Fitting for Dogs',
+      date: '2024-11-15',
+      status: 'Confirmed'
+    },
+    {
+      id: 2,
+      serviceName: 'Winter Grooming & Paw Treatment',
+      date: '2024-11-20',
+      status: 'Pending'
+    }
+  ];
+
+  // Spring animation for avatar
+  const avatarSpring = useSpring({
+    from: { transform: 'scale(0) rotate(-180deg)' },
+    to: { transform: 'scale(1) rotate(0deg)' },
+    config: { tension: 200, friction: 20 }
+  });
+
+  // Spring animation for profile card
+  const cardSpring = useSpring({
+    from: { opacity: 0, transform: 'translateX(-100px)' },
+    to: { opacity: 1, transform: 'translateX(0px)' },
+    delay: 200
+  });
+
+  return (
+    <div className="min-h-screen py-16 px-4 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <h1 
+          className="text-5xl font-bold text-center mb-4 text-gray-800 animate__animated animate__fadeInDown"
+        >
+          My Profile
+        </h1>
+        <p className="text-center text-gray-600 text-lg mb-12">Manage your account information and track your bookings</p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Profile Card */}
+          <div className="lg:col-span-1">
+            <animated.div style={cardSpring}>
+              <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8" data-aos="fade-right">
+                <div className="text-center">
+                  <animated.div style={avatarSpring} className="avatar online mb-6">
+                    <div className="w-32 rounded-full ring-4 ring-primary ring-offset-4 ring-offset-white hover:scale-110 transition-transform">
+                      <img src={displayUser.avatar} alt={displayUser.displayName} />
+                    </div>
+                  </animated.div>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-2">{displayUser.displayName}</h2>
+                  <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-6">
+                    <FaCalendar className="text-primary" />
+                    <p>Member since {displayUser.memberSince}</p>
+                  </div>
+                  <button className="btn btn-primary w-full rounded-xl shadow-md hover:shadow-lg transition-all gap-2 hover:scale-105 mt-6">
+                    <FaEdit />
+                    Edit Profile
+                  </button>
+                </div>
+              </div>
+            </animated.div>
+          </div>
+
+          {/* Details and Bookings */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Contact Information */}
+            <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8" data-aos="fade-left" data-aos-delay="200">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <div className="bg-primary/10 p-2 rounded-lg">
+                  <FaUser className="text-primary text-xl" />
+                </div>
+                Contact Information
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors border border-gray-100">
+                  <div className="bg-primary/10 p-3 rounded-lg">
+                    <FaEnvelope className="text-xl text-primary" />
+                  </div>
+                  <div>
+                    <span className="text-sm text-gray-500 font-medium">Email Address</span>
+                    <p className="font-bold text-gray-800">{displayUser.email}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors border border-gray-100">
+                  <div className="bg-primary/10 p-3 rounded-lg">
+                    <FaPhone className="text-xl text-primary" />
+                  </div>
+                  <div>
+                    <span className="text-sm text-gray-500 font-medium">Phone Number</span>
+                    <p className="font-bold text-gray-800">{displayUser.phone}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors border border-gray-100">
+                  <div className="bg-primary/10 p-3 rounded-lg">
+                    <FaMapMarkerAlt className="text-xl text-primary" />
+                  </div>
+                  <div>
+                    <span className="text-sm text-gray-500 font-medium">Home Address</span>
+                    <p className="font-bold text-gray-800">{displayUser.address}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* My Bookings */}
+            <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8" data-aos="fade-left" data-aos-delay="400">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <div className="bg-secondary/10 p-2 rounded-lg">
+                  <FaCalendar className="text-secondary text-xl" />
+                </div>
+                My Bookings
+              </h3>
+              {bookings.length > 0 ? (
+                <div className="space-y-4">
+                  {bookings.map((booking, index) => (
+                    <div 
+                      key={booking.id} 
+                      className="flex items-center justify-between p-6 bg-gray-50 rounded-xl hover:shadow-md transition-all hover:-translate-y-1 border-2 border-gray-100"
+                      data-aos="flip-up"
+                      data-aos-delay={index * 200}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="bg-primary/10 p-4 rounded-xl">
+                          <FaClock className="text-2xl text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-lg text-gray-800">{booking.serviceName}</h4>
+                          <p className="text-sm text-gray-500 flex items-center gap-2 mt-1">
+                            <FaCalendar />
+                            {booking.date}
+                          </p>
+                        </div>
+                      </div>
+                      <div>
+                        {booking.status === 'Confirmed' ? (
+                          <span className="bg-success text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 animate__animated animate__bounceIn shadow-md">
+                            <FaCheckCircle />
+                            {booking.status}
+                          </span>
+                        ) : (
+                          <span className="bg-warning text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 animate__animated animate__bounceIn shadow-md">
+                            <FaExclamationCircle />
+                            {booking.status}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-16">
+                  <div className="bg-gray-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <FaCalendar className="text-5xl text-gray-300" />
+                  </div>
+                  <p className="text-gray-600 text-xl font-semibold mb-2">No bookings yet</p>
+                  <p className="text-gray-500">Start booking services to see them here!</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MyProfile;

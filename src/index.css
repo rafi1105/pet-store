@@ -1,0 +1,29 @@
+@import 'animate.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  background-color: #ffffff;
+}
+
+/* Custom Card Styles */
+.modern-card {
+  @apply bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100;
+}
+
+.modern-card-hover {
+  @apply hover:-translate-y-2 transition-transform duration-300;
+}
+
+/* Custom Button Styles */
+.btn-modern {
+  @apply rounded-xl font-semibold transition-all duration-300;
+}
+
+/* Custom Badge Styles */
+.badge-modern {
+  @apply rounded-full px-4 py-2 font-semibold;
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Sarah Mitchell",
+    "specialty": "Winter Pet Healthcare",
+    "experience": "15 years",
+    "image": "https://i.pravatar.cc/300?img=1",
+    "description": "Specialized in cold weather pet care and winter health management."
+  },
+  {
+    "id": 2,
+    "name": "Dr. James Anderson",
+    "specialty": "Pet Nutrition",
+    "experience": "12 years",
+    "image": "https://i.pravatar.cc/300?img=12",
+    "description": "Expert in seasonal dietary adjustments and winter nutrition plans."
+  },
+  {
+    "id": 3,
+    "name": "Dr. Emily Chen",
+    "specialty": "Pet Dermatology",
+    "experience": "10 years",
+    "image": "https://i.pravatar.cc/300?img=5",
+    "description": "Focuses on protecting pet skin and paws during harsh winter conditions."
+  },
+  {
+    "id": 4,
+    "name": "Dr. Michael Brown",
+    "specialty": "Emergency Care",
+    "experience": "18 years",
+    "image": "https://i.pravatar.cc/300?img=13",
+    "description": "Available for winter emergencies and cold-related health issues."
+  }
+]

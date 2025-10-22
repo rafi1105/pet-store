@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Keep Paws Protected",
+    "description": "Use paw balm before walks and clean paws after to remove ice-melting chemicals.",
+    "icon": "🐾"
+  },
+  {
+    "id": 2,
+    "title": "Maintain Proper Hydration",
+    "description": "Ensure fresh water is always available. Pets can dehydrate in winter too!",
+    "icon": "💧"
+  },
+  {
+    "id": 3,
+    "title": "Adjust Diet Accordingly",
+    "description": "Outdoor pets may need more calories, while indoor pets may need less.",
+    "icon": "🍖"
+  },
+  {
+    "id": 4,
+    "title": "Limit Outdoor Time",
+    "description": "Watch for signs of discomfort like shivering, whining, or reluctance to walk.",
+    "icon": "⏰"
+  }
+]
