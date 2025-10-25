@@ -46,7 +46,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-base-200">
       {/* Hero Slider */}
       <div className="relative">
         <Swiper
@@ -86,13 +86,13 @@ const Home = () => {
       </div>
 
       {/* Popular Winter Care Services */}
-      <div className="py-20 bg-gray-50">
+      <div className="py-20 bg-base-100">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-gray-800 mb-4" data-aos="fade-up">
+            <h2 className="text-5xl font-bold text-gray-900 mb-4" data-aos="fade-up">
               Popular Winter Care Services
             </h2>
-            <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <p className="text-gray-700 text-xl max-w-3xl mx-auto leading-relaxed font-medium" data-aos="fade-up" data-aos-delay="100">
               Discover our most trusted services designed to keep your pets healthy, comfortable, and happy throughout the winter season
             </p>
           </div>
@@ -101,7 +101,7 @@ const Home = () => {
             {servicesData.slice(0, 6).map((service, index) => (
               <div 
                 key={service.serviceId} 
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-100 overflow-hidden group"
+                className="bg-base-100 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 overflow-hidden group"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
@@ -122,15 +122,15 @@ const Home = () => {
                       {service.category}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
                     {service.serviceName}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">{service.description}</p>
+                  <p className="text-gray-700 text-sm mb-4 line-clamp-2">{service.description}</p>
                   
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl mb-4">
+                  <div className="flex items-center justify-between p-4 bg-base-200 rounded-xl mb-4">
                     <div className="flex items-center gap-2">
                       <FaStar className="text-yellow-500 text-lg" />
-                      <span className="font-bold text-gray-800">{service.rating}</span>
+                      <span className="font-bold text-gray-900">{service.rating}</span>
                       <span className="text-gray-500 text-sm">(250+ reviews)</span>
                     </div>
                     <div className="flex items-center gap-1 text-primary">
@@ -139,7 +139,7 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+                  <div className="flex items-center justify-between text-sm text-gray-700 mb-4">
                     <span>Provider: {service.providerName}</span>
                     <span className="font-semibold text-success">{service.slotsAvailable} slots left</span>
                   </div>
@@ -159,13 +159,13 @@ const Home = () => {
       </div>
 
       {/* Winter Care Tips */}
-      <div className="py-20 bg-white">
+      <div className="py-20 bg-base-100">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-gray-800 mb-4" data-aos="fade-up">
+            <h2 className="text-5xl font-bold text-gray-900 mb-4" data-aos="fade-up">
               Essential Winter Care Tips
             </h2>
-            <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <p className="text-gray-700 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
               Expert advice to help you keep your furry companions safe, warm, and thriving during the cold season
             </p>
           </div>
@@ -174,13 +174,13 @@ const Home = () => {
             {winterTips.map((tip, index) => (
               <div 
                 key={tip.id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-8 text-center border-2 border-gray-100"
+                className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-8 text-center border-2 border-primary/20"
                 data-aos="zoom-in"
                 data-aos-delay={index * 100}
               >
                 <div className="text-6xl mb-6">{tip.icon}</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">{tip.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{tip.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{tip.title}</h3>
+                <p className="text-gray-700 leading-relaxed">{tip.description}</p>
               </div>
             ))}
           </div>
@@ -188,13 +188,13 @@ const Home = () => {
       </div>
 
       {/* Meet Our Expert Vets */}
-      <div className="py-20 bg-gray-50">
+      <div className="py-20 bg-base-200">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-gray-800 mb-4" data-aos="fade-up">
+            <h2 className="text-5xl font-bold text-gray-900 mb-4" data-aos="fade-up">
               Meet Our Expert Veterinarians
             </h2>
-            <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <p className="text-gray-700 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
               Our highly qualified team of veterinary professionals dedicated to providing exceptional winter care for your beloved pets
             </p>
           </div>
@@ -203,7 +203,7 @@ const Home = () => {
             {experts.map((expert, index) => (
               <div 
                 key={expert.id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+                className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
                 data-aos="flip-left"
                 data-aos-delay={index * 100}
               >
@@ -217,11 +217,11 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">{expert.name}</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{expert.name}</h3>
                   <div className="inline-block bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-semibold mb-3">
                     {expert.specialty}
                   </div>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{expert.description}</p>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">{expert.description}</p>
                   <div className="flex items-center justify-center gap-2 text-sm font-semibold text-primary bg-primary/10 py-2 px-4 rounded-lg">
                     <FaMedal />
                     {expert.experience} Experience
@@ -260,55 +260,55 @@ const Home = () => {
       </div>
 
       {/* Why Choose Us Section */}
-      <div className="py-20 bg-white">
+      <div className="py-20 bg-base-100">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-gray-800 mb-4" data-aos="fade-up">
+            <h2 className="text-5xl font-bold text-gray-900 mb-4" data-aos="fade-up">
               Why Pet Owners Choose WarmPaws
             </h2>
-            <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <p className="text-gray-700 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
               Discover what makes us the preferred choice for winter pet care services
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div 
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-8 text-center border-2 border-gray-100" 
+              className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-8 text-center border-2 border-primary/20" 
               data-aos="zoom-in"
             >
               <div className="bg-primary/10 text-primary p-6 rounded-2xl inline-block mb-6">
                 <FaShieldAlt className="text-5xl" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Certified & Trusted</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Certified & Trusted</h3>
+              <p className="text-gray-700 leading-relaxed">
                 All our veterinarians are board-certified with extensive experience in winter pet care and safety protocols
               </p>
             </div>
 
             <div 
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-8 text-center border-2 border-gray-100" 
+              className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-8 text-center border-2 border-primary/20" 
               data-aos="zoom-in" 
               data-aos-delay="100"
             >
               <div className="bg-secondary/10 text-secondary p-6 rounded-2xl inline-block mb-6">
                 <FaMedal className="text-5xl" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Award-Winning Service</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Award-Winning Service</h3>
+              <p className="text-gray-700 leading-relaxed">
                 Rated 4.9/5 stars by over 10,000 satisfied pet parents nationwide. Winner of Best Pet Care 2024
               </p>
             </div>
 
             <div 
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-8 text-center border-2 border-gray-100" 
+              className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 p-8 text-center border-2 border-primary/20" 
               data-aos="zoom-in" 
               data-aos-delay="200"
             >
               <div className="bg-accent/10 text-accent p-6 rounded-2xl inline-block mb-6">
                 <FaBolt className="text-5xl" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Quick & Convenient</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Quick & Convenient</h3>
+              <p className="text-gray-700 leading-relaxed">
                 Instant online booking with same-day appointments available. We work around your schedule
               </p>
             </div>
@@ -317,13 +317,13 @@ const Home = () => {
       </div>
 
       {/* Customer Testimonials Section */}
-      <div className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <div className="py-20 bg-base-200">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-800 mb-4" data-aos="fade-up">
+            <h2 className="text-5xl font-bold text-gray-900 mb-4" data-aos="fade-up">
               What Our Pet Parents Say
             </h2>
-            <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <p className="text-gray-700 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
               Real stories from pet owners who trust us with their furry family members
             </p>
           </div>
@@ -331,7 +331,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Testimonial 1 */}
             <div 
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 p-8 relative border-2 border-gray-100" 
+              className="bg-base-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 p-8 relative border-2 border-primary/20" 
               data-aos="fade-up"
             >
               <div className="absolute -top-6 left-8">
@@ -346,13 +346,13 @@ const Home = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-gray-800">Sarah Johnson</h4>
+                  <h4 className="font-bold text-lg text-gray-900">Sarah Johnson</h4>
                   <div className="flex gap-1 text-warning">
                     <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600 leading-relaxed italic mb-4">
+              <p className="text-gray-700 leading-relaxed italic mb-4">
                 "WarmPaws has been a lifesaver this winter! My Golden Retriever, Max, loves the grooming sessions. The staff is incredibly knowledgeable about winter care, and Max always comes home happy and warm. Highly recommend!"
               </p>
               <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -363,7 +363,7 @@ const Home = () => {
 
             {/* Testimonial 2 */}
             <div 
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 p-8 relative border-2 border-gray-100" 
+              className="bg-base-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 p-8 relative border-2 border-primary/20" 
               data-aos="fade-up"
               data-aos-delay="100"
             >
@@ -379,13 +379,13 @@ const Home = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-gray-800">Michael Chen</h4>
+                  <h4 className="font-bold text-lg text-gray-900">Michael Chen</h4>
                   <div className="flex gap-1 text-warning">
                     <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600 leading-relaxed italic mb-4">
+              <p className="text-gray-700 leading-relaxed italic mb-4">
                 "The winter wellness checkup service is fantastic! Dr. Emily was so gentle with my cat Luna. They caught a minor issue early and gave me great tips for keeping her comfortable during cold weather. Professional and caring!"
               </p>
               <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -396,7 +396,7 @@ const Home = () => {
 
             {/* Testimonial 3 */}
             <div 
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 p-8 relative border-2 border-gray-100" 
+              className="bg-base-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 p-8 relative border-2 border-primary/20" 
               data-aos="fade-up"
               data-aos-delay="200"
             >
@@ -412,13 +412,13 @@ const Home = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg text-gray-800">Emily Rodriguez</h4>
+                  <h4 className="font-bold text-lg text-gray-900">Emily Rodriguez</h4>
                   <div className="flex gap-1 text-warning">
                     <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600 leading-relaxed italic mb-4">
+              <p className="text-gray-700 leading-relaxed italic mb-4">
                 "Best pet care service ever! I got my Husky, Koda, fitted with a beautiful winter coat. The online booking was super easy, and they were very flexible with scheduling. Koda looks adorable and stays warm on our walks!"
               </p>
               <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -429,21 +429,21 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-12" data-aos="zoom-in">
-            <div className="stats stats-vertical lg:stats-horizontal shadow-2xl bg-white rounded-2xl border-2 border-gray-100">
+            <div className="stats stats-vertical lg:stats-horizontal shadow-2xl bg-base-100 rounded-2xl border-2 border-primary/20">
               <div className="stat place-items-center">
-                <div className="stat-title text-gray-600 font-semibold">Happy Customers</div>
+                <div className="stat-title text-gray-700 font-semibold">Happy Customers</div>
                 <div className="stat-value text-primary">10,000+</div>
                 <div className="stat-desc text-gray-500">Across the nation</div>
               </div>
               
               <div className="stat place-items-center">
-                <div className="stat-title text-gray-600 font-semibold">Services Completed</div>
+                <div className="stat-title text-gray-700 font-semibold">Services Completed</div>
                 <div className="stat-value text-secondary">25,000+</div>
                 <div className="stat-desc text-gray-500">This winter season</div>
               </div>
               
               <div className="stat place-items-center">
-                <div className="stat-title text-gray-600 font-semibold">Average Rating</div>
+                <div className="stat-title text-gray-700 font-semibold">Average Rating</div>
                 <div className="stat-value text-accent">4.9/5</div>
                 <div className="stat-desc text-warning flex gap-1">
                   <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
@@ -458,3 +458,4 @@ const Home = () => {
 };
 
 export default Home;
+

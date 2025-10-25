@@ -96,20 +96,20 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white py-12 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-base-200 py-12 px-4">
       <Toaster />
       <div className="w-full max-w-md">
         <div className="text-center mb-8 animate__animated animate__fadeInDown">
-          <div className="inline-block bg-primary/10 p-6 rounded-3xl mb-4 hover:scale-110 transition-transform">
+          <div className="inline-block bg-primary/10 p-6 rounded-3xl mb-4 hover:scale-110 transition-transform shadow-lg">
             <FaPaw className="text-6xl text-primary animate-bounce" />
           </div>
-          <h2 className="text-4xl font-bold text-gray-800 mb-2">
+          <h2 className="text-4xl font-bold text-gray-900 mb-2">
             Welcome Back!
           </h2>
-          <p className="text-gray-600">Sign in to access your pet care dashboard</p>
+          <p className="text-gray-700 font-medium text-lg">Sign in to access your pet care dashboard</p>
         </div>
         
-        <div className="bg-white rounded-2xl shadow-2xl p-8 border-2 border-gray-100 animate__animated animate__fadeInUp">
+        <div className="bg-base-100 rounded-2xl shadow-2xl p-8 border-2 border-primary/20 animate__animated animate__fadeInUp">
           <button 
             onClick={handleGoogleSignIn}
             type="button"

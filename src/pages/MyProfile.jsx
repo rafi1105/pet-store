@@ -133,20 +133,20 @@ const MyProfile = () => {
   });
 
   return (
-    <div className="min-h-screen py-16 px-4 bg-white">
+    <div className="min-h-screen py-16 px-4 bg-base-200">
       <div className="max-w-6xl mx-auto">
         <h1 
-          className="text-5xl font-bold text-center mb-4 text-gray-800 animate__animated animate__fadeInDown"
+          className="text-5xl font-bold text-center mb-4 text-gray-900 animate__animated animate__fadeInDown"
         >
           My Profile
         </h1>
-        <p className="text-center text-gray-600 text-lg mb-12">Manage your account information and track your bookings</p>
+        <p className="text-center text-gray-700 text-lg mb-12 font-medium">Manage your account information and track your bookings</p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Profile Card */}
           <div className="lg:col-span-1">
             <animated.div style={cardSpring}>
-              <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8" data-aos="fade-right">
+              <div className="bg-base-100 rounded-2xl shadow-xl border-2 border-primary/20 p-8" data-aos="fade-right">
                 <div className="text-center">
                   <animated.div style={avatarSpring} className="avatar online mb-6">
                     <div className="w-32 rounded-full ring-4 ring-primary ring-offset-4 ring-offset-white hover:scale-110 transition-transform overflow-hidden bg-primary/10">
@@ -179,8 +179,8 @@ const MyProfile = () => {
           {/* Details and Bookings */}
           <div className="lg:col-span-2 space-y-8">
             {/* Contact Information */}
-            <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8" data-aos="fade-left" data-aos-delay="200">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+            <div className="bg-base-100 rounded-2xl shadow-xl border-2 border-primary/20 p-8" data-aos="fade-left" data-aos-delay="200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                 <div className="bg-primary/10 p-2 rounded-lg">
                   <FaUser className="text-primary text-xl" />
                 </div>
@@ -218,8 +218,8 @@ const MyProfile = () => {
             </div>
 
             {/* My Bookings */}
-            <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8" data-aos="fade-left" data-aos-delay="400">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+            <div className="bg-base-100 rounded-2xl shadow-xl border-2 border-primary/20 p-8" data-aos="fade-left" data-aos-delay="400">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                 <div className="bg-secondary/10 p-2 rounded-lg">
                   <FaCalendar className="text-secondary text-xl" />
                 </div>
@@ -279,9 +279,9 @@ const MyProfile = () => {
       {/* Update Profile Modal */}
       {showUpdateModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate__animated animate__fadeIn">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 animate__animated animate__zoomIn">
+          <div className="bg-base-100 rounded-2xl shadow-2xl max-w-md w-full p-8 animate__animated animate__zoomIn border-2 border-primary/20">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+              <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                 <FaEdit className="text-primary" />
                 Update Profile
               </h3>

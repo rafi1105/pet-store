@@ -20,15 +20,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar bg-white shadow-md px-4 lg:px-8 sticky top-0 z-50 border-b-2 border-primary/10">
+    <nav className="navbar bg-base-100 shadow-lg px-4 lg:px-8 sticky top-0 z-50 border-b-2 border-primary/20">
       <div className="flex-1">
         <Link to="/" className="flex items-center gap-2 hover:scale-105 transition-transform">
-          <div className="bg-primary p-2 rounded-xl">
+          <div className="bg-primary p-2 rounded-xl shadow-md">
             <FaPaw className="text-3xl text-white" />
           </div>
           <div>
             <span className="text-2xl font-bold text-primary">WarmPaws</span>
-            <p className="text-xs text-gray-500 hidden lg:block">Pet Care Services</p>
+            <p className="text-xs text-gray-600 hidden lg:block font-medium">Pet Care Services</p>
           </div>
         </Link>
       </div>
@@ -36,19 +36,19 @@ const Navbar = () => {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1 gap-2 hidden md:flex">
           <li>
-            <Link to="/" className="font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-xl transition-all flex items-center gap-2">
+            <Link to="/" className="font-semibold text-gray-800 hover:text-primary hover:bg-primary/10 rounded-xl transition-all flex items-center gap-2">
               <FaHome className="text-lg" />
               Home
             </Link>
           </li>
           <li>
-            <Link to="/services" className="font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-xl transition-all flex items-center gap-2">
+            <Link to="/services" className="font-semibold text-gray-800 hover:text-primary hover:bg-primary/10 rounded-xl transition-all flex items-center gap-2">
               <FaConciergeBell className="text-lg" />
               Services
             </Link>
           </li>
           <li>
-            <Link to="/my-profile" className="font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-xl transition-all flex items-center gap-2">
+            <Link to="/my-profile" className="font-semibold text-gray-800 hover:text-primary hover:bg-primary/10 rounded-xl transition-all flex items-center gap-2">
               <FaUser className="text-lg" />
               My Profile
             </Link>
@@ -80,8 +80,8 @@ const Navbar = () => {
                     <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></div>
                   </div>
                 </label>
-                <ul tabIndex={0} className="mt-3 z-[1] p-3 shadow-2xl menu menu-sm dropdown-content bg-white rounded-2xl w-64 border border-gray-100">
-                  <li className="menu-title px-4 py-3 bg-primary/5 rounded-xl mb-2">
+                <ul tabIndex={0} className="mt-3 z-[1] p-3 shadow-2xl menu menu-sm dropdown-content bg-base-100 rounded-2xl w-64 border-2 border-gray-200">
+                  <li className="menu-title px-4 py-3 bg-primary/10 rounded-xl mb-2">
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="w-12 rounded-full ring-2 ring-primary overflow-hidden bg-primary/10">
@@ -98,7 +98,7 @@ const Navbar = () => {
                         <span className="text-primary font-bold block text-sm">
                           {user?.displayName}
                         </span>
-                        <span className="text-gray-500 text-xs block truncate">
+                        <span className="text-gray-600 text-xs block truncate">
                           {user?.email}
                         </span>
                       </div>
@@ -106,13 +106,13 @@ const Navbar = () => {
                   </li>
                   <div className="divider my-1"></div>
                   <li>
-                    <Link to="/my-profile" className="hover:bg-primary/10 text-gray-700 rounded-xl flex items-center gap-2 py-3">
+                    <Link to="/my-profile" className="hover:bg-primary/10 text-gray-800 rounded-xl flex items-center gap-2 py-3 font-medium">
                       <FaUser className="text-primary" />
                       My Profile
                     </Link>
                   </li>
                   <li>
-                    <Link to="/settings" className="hover:bg-primary/10 text-gray-700 rounded-xl flex items-center gap-2 py-3">
+                    <Link to="/settings" className="hover:bg-primary/10 text-gray-800 rounded-xl flex items-center gap-2 py-3 font-medium">
                       <FaCog className="text-primary" />
                       Settings
                     </Link>
@@ -121,7 +121,7 @@ const Navbar = () => {
                   <li>
                     <button 
                       onClick={logout} 
-                      className="hover:bg-error/10 text-error rounded-xl flex items-center gap-2 py-3 w-full text-left"
+                      className="hover:bg-error/10 text-error rounded-xl flex items-center gap-2 py-3 w-full text-left font-semibold"
                     >
                       <FaSignOutAlt />
                       Logout
@@ -132,11 +132,11 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="flex gap-2">
-              <Link to="/login" className="btn btn-ghost btn-sm text-gray-700 hover:bg-primary/5 hover:text-primary rounded-xl flex items-center gap-2">
+              <Link to="/login" className="btn btn-ghost btn-sm text-gray-800 hover:bg-primary/10 hover:text-primary rounded-xl flex items-center gap-2 font-semibold">
                 <FaSignInAlt />
                 <span className="hidden sm:inline">Login</span>
               </Link>
-              <Link to="/register" className="btn btn-primary btn-sm shadow-md hover:shadow-lg hover:scale-105 transition-all rounded-xl flex items-center gap-2">
+              <Link to="/register" className="btn btn-primary btn-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all rounded-xl flex items-center gap-2 font-semibold">
                 <FaUserPlus />
                 <span className="hidden sm:inline">Register</span>
               </Link>

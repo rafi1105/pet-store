@@ -1,18 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import servicesData from '../data/services.json';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useSpring, animated } from '@react-spring/web';
-import { FaStar, FaDollarSign, FaArrowRight, FaSnowflake, FaShieldAlt, FaCheckCircle, FaClock } from 'react-icons/fa';
+import { FaStar, FaDollarSign, FaArrowRight, FaSnowflake, FaShieldAlt, FaCheckCircle, FaClock, FaSearch, FaFilter } from 'react-icons/fa';
 
 const Services = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [filteredServices, setFilteredServices] = useState(servicesData);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
     });
   }, []);
+
+  // Get unique categories
+  const categories = ['All', ...new Set(servicesData.map(service => service.category))];
+
+  // Filter services based on search and category
+  useEffect(() => {
+    let filtered = servicesData;
+
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter(service =>
+        service.serviceName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        service.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        service.category.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Filter by category
+    if (selectedCategory !== 'All') {
+      filtered = filtered.filter(service => service.category === selectedCategory);
+    }
+
+    setFilteredServices(filtered);
+  }, [searchTerm, selectedCategory]);
 
   // Spring animation for the title
   const titleSpring = useSpring({
@@ -22,27 +50,71 @@ const Services = () => {
   });
 
   return (
-    <div className="min-h-screen py-16 px-4 bg-white">
+    <div className="min-h-screen py-16 px-4 bg-base-200">
       <div className="max-w-7xl mx-auto">
         <animated.h1 
           style={titleSpring}
-          className="text-5xl font-bold text-center text-gray-800 mb-6"
+          className="text-5xl font-bold text-center text-gray-900 mb-6"
         >
           Our Winter Pet Care Services
         </animated.h1>
         <p 
-          className="text-center text-xl text-gray-600 mb-16 max-w-3xl mx-auto leading-relaxed animate__animated animate__fadeIn"
+          className="text-center text-xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed animate__animated animate__fadeIn font-medium"
           data-aos="fade-up"
           data-aos-delay="200"
         >
           Discover our comprehensive range of professional winter care services designed to keep your pets comfortable, healthy, and happy during the cold season.
         </p>
 
+        {/* Search and Filter Section */}
+        <div className="mb-12 space-y-6" data-aos="fade-up" data-aos-delay="300">
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search services by name, category, or description..."
+                className="input input-bordered w-full pl-12 pr-4 py-6 text-lg rounded-2xl bg-base-100 focus:ring-4 focus:ring-primary/20 focus:border-primary shadow-lg"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-primary text-xl" />
+            </div>
+          </div>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex items-center gap-2 text-primary font-semibold">
+              <FaFilter />
+              <span>Filter:</span>
+            </div>
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`btn btn-sm rounded-xl font-semibold transition-all ${
+                  selectedCategory === category
+                    ? 'btn-primary shadow-lg'
+                    : 'btn-outline btn-primary hover:btn-primary'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Results Count */}
+          <div className="text-center text-gray-700 font-medium">
+            Showing <span className="font-bold text-primary text-lg">{filteredServices.length}</span> service{filteredServices.length !== 1 ? 's' : ''}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesData.map((service, index) => (
+          {filteredServices.length > 0 ? (
+            filteredServices.map((service, index) => (
             <div 
               key={service.serviceId} 
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-100 overflow-hidden group"
+              className="bg-base-100 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 overflow-hidden group"
               data-aos="zoom-in"
               data-aos-delay={index * 100}
             >
@@ -111,7 +183,27 @@ const Services = () => {
                 </Link>
               </div>
             </div>
-          ))}
+          ))
+          ) : (
+            <div className="col-span-full text-center py-20">
+              <div className="bg-base-100 rounded-2xl shadow-xl p-12 max-w-md mx-auto border-2 border-primary/20">
+                <FaSearch className="text-6xl text-gray-400 mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">No Services Found</h3>
+                <p className="text-gray-700 mb-6 font-medium">
+                  We couldn't find any services matching your search criteria. Try different keywords or filters.
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedCategory('All');
+                  }}
+                  className="btn btn-primary rounded-xl"
+                >
+                  Clear Filters
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
