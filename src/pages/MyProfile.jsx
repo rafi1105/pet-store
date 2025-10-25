@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useSpring, animated } from '@react-spring/web';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import toast from 'react-hot-toast';
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendar, FaEdit, FaCheckCircle, FaClock, FaExclamationCircle } from 'react-icons/fa';
 
 const MyProfile = () => {
@@ -15,6 +16,15 @@ const MyProfile = () => {
       once: true,
     });
   }, []);
+
+  // Handle update profile button click
+  const handleUpdateProfile = () => {
+    toast.success('Profile update feature coming soon!', {
+      duration: 3000,
+      position: 'top-center',
+      icon: '🚀',
+    });
+  };
 
   // Default user data if not logged in
   const displayUser = user || {
@@ -99,9 +109,12 @@ const MyProfile = () => {
                     <FaCalendar className="text-primary" />
                     <p>Member since {displayUser.memberSince}</p>
                   </div>
-                  <button className="btn btn-primary w-full rounded-xl shadow-md hover:shadow-lg transition-all gap-2 hover:scale-105 mt-6">
+                  <button 
+                    onClick={handleUpdateProfile}
+                    className="btn btn-primary w-full rounded-xl shadow-md hover:shadow-lg transition-all gap-2 hover:scale-105 mt-6"
+                  >
                     <FaEdit />
-                    Edit Profile
+                    Update Profile
                   </button>
                 </div>
               </div>

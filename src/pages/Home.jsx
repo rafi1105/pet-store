@@ -10,7 +10,7 @@ import 'aos/dist/aos.css';
 import servicesData from '../data/services.json';
 import winterTips from '../data/winterTips.json';
 import experts from '../data/experts.json';
-import { FaStar, FaDollarSign, FaArrowRight, FaSnowflake, FaHeart, FaBolt, FaShieldAlt, FaMedal, FaRocket } from 'react-icons/fa';
+import { FaStar, FaDollarSign, FaArrowRight, FaSnowflake, FaHeart, FaBolt, FaShieldAlt, FaMedal, FaRocket, FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 
 const Home = () => {
   useEffect(() => {
@@ -311,6 +311,144 @@ const Home = () => {
               <p className="text-gray-600 leading-relaxed">
                 Instant online booking with same-day appointments available. We work around your schedule
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Customer Testimonials Section */}
+      <div className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-gray-800 mb-4" data-aos="fade-up">
+              What Our Pet Parents Say
+            </h2>
+            <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+              Real stories from pet owners who trust us with their furry family members
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div 
+              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 p-8 relative border-2 border-gray-100" 
+              data-aos="fade-up"
+            >
+              <div className="absolute -top-6 left-8">
+                <div className="bg-primary text-white p-4 rounded-2xl shadow-lg">
+                  <FaQuoteLeft className="text-3xl" />
+                </div>
+              </div>
+              <div className="flex items-center gap-4 mb-6 mt-8">
+                <div className="avatar">
+                  <div className="w-16 rounded-full ring-4 ring-primary ring-offset-2">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="Sarah Johnson" />
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg text-gray-800">Sarah Johnson</h4>
+                  <div className="flex gap-1 text-warning">
+                    <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                  </div>
+                </div>
+              </div>
+              <p className="text-gray-600 leading-relaxed italic mb-4">
+                "WarmPaws has been a lifesaver this winter! My Golden Retriever, Max, loves the grooming sessions. The staff is incredibly knowledgeable about winter care, and Max always comes home happy and warm. Highly recommend!"
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-500">
+                <FaHeart className="text-red-500" />
+                <span>Owner of Max (Golden Retriever)</span>
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div 
+              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 p-8 relative border-2 border-gray-100" 
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div className="absolute -top-6 left-8">
+                <div className="bg-secondary text-white p-4 rounded-2xl shadow-lg">
+                  <FaQuoteLeft className="text-3xl" />
+                </div>
+              </div>
+              <div className="flex items-center gap-4 mb-6 mt-8">
+                <div className="avatar">
+                  <div className="w-16 rounded-full ring-4 ring-secondary ring-offset-2">
+                    <img src="https://i.pravatar.cc/150?img=5" alt="Michael Chen" />
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg text-gray-800">Michael Chen</h4>
+                  <div className="flex gap-1 text-warning">
+                    <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                  </div>
+                </div>
+              </div>
+              <p className="text-gray-600 leading-relaxed italic mb-4">
+                "The winter wellness checkup service is fantastic! Dr. Emily was so gentle with my cat Luna. They caught a minor issue early and gave me great tips for keeping her comfortable during cold weather. Professional and caring!"
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-500">
+                <FaHeart className="text-red-500" />
+                <span>Owner of Luna (Persian Cat)</span>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div 
+              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 p-8 relative border-2 border-gray-100" 
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div className="absolute -top-6 left-8">
+                <div className="bg-accent text-white p-4 rounded-2xl shadow-lg">
+                  <FaQuoteLeft className="text-3xl" />
+                </div>
+              </div>
+              <div className="flex items-center gap-4 mb-6 mt-8">
+                <div className="avatar">
+                  <div className="w-16 rounded-full ring-4 ring-accent ring-offset-2">
+                    <img src="https://i.pravatar.cc/150?img=9" alt="Emily Rodriguez" />
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg text-gray-800">Emily Rodriguez</h4>
+                  <div className="flex gap-1 text-warning">
+                    <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                  </div>
+                </div>
+              </div>
+              <p className="text-gray-600 leading-relaxed italic mb-4">
+                "Best pet care service ever! I got my Husky, Koda, fitted with a beautiful winter coat. The online booking was super easy, and they were very flexible with scheduling. Koda looks adorable and stays warm on our walks!"
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-500">
+                <FaHeart className="text-red-500" />
+                <span>Owner of Koda (Siberian Husky)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12" data-aos="zoom-in">
+            <div className="stats stats-vertical lg:stats-horizontal shadow-2xl bg-white rounded-2xl border-2 border-gray-100">
+              <div className="stat place-items-center">
+                <div className="stat-title text-gray-600 font-semibold">Happy Customers</div>
+                <div className="stat-value text-primary">10,000+</div>
+                <div className="stat-desc text-gray-500">Across the nation</div>
+              </div>
+              
+              <div className="stat place-items-center">
+                <div className="stat-title text-gray-600 font-semibold">Services Completed</div>
+                <div className="stat-value text-secondary">25,000+</div>
+                <div className="stat-desc text-gray-500">This winter season</div>
+              </div>
+              
+              <div className="stat place-items-center">
+                <div className="stat-title text-gray-600 font-semibold">Average Rating</div>
+                <div className="stat-value text-accent">4.9/5</div>
+                <div className="stat-desc text-warning flex gap-1">
+                  <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                </div>
+              </div>
             </div>
           </div>
         </div>
