@@ -68,39 +68,45 @@ const Footer = () => {
         <aside>
           <div className="flex gap-4 mb-4">
             <a 
-              href="https://twitter.com" 
+              href="https://twitter.com/warmpaws" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="btn btn-circle btn-sm bg-primary/10 border-0 hover:bg-primary hover:text-white transition-all hover:scale-110"
+              className="btn btn-circle btn-sm bg-primary/10 border-0 hover:bg-primary hover:scale-110 transition-all group"
+              aria-label="Twitter"
             >
-              <FaTwitter className="text-xl text-primary hover:text-white" />
+              <FaTwitter className="text-xl text-primary group-hover:text-white transition-colors" />
             </a>
             <a 
-              href="https://facebook.com" 
+              href="https://facebook.com/warmpaws" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="btn btn-circle btn-sm bg-primary/10 border-0 hover:bg-primary hover:text-white transition-all hover:scale-110"
+              className="btn btn-circle btn-sm bg-primary/10 border-0 hover:bg-primary hover:scale-110 transition-all group"
+              aria-label="Facebook"
             >
-              <FaFacebook className="text-xl text-primary hover:text-white" />
+              <FaFacebook className="text-xl text-primary group-hover:text-white transition-colors" />
             </a>
             <a 
-              href="https://instagram.com" 
+              href="https://instagram.com/warmpaws" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="btn btn-circle btn-sm bg-primary/10 border-0 hover:bg-primary hover:text-white transition-all hover:scale-110"
+              className="btn btn-circle btn-sm bg-primary/10 border-0 hover:bg-primary hover:scale-110 transition-all group"
+              aria-label="Instagram"
             >
-              <FaInstagram className="text-xl text-primary hover:text-white" />
+              <FaInstagram className="text-xl text-primary group-hover:text-white transition-colors" />
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://linkedin.com/company/warmpaws" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="btn btn-circle btn-sm bg-primary/10 border-0 hover:bg-primary hover:text-white transition-all hover:scale-110"
+              className="btn btn-circle btn-sm bg-primary/10 border-0 hover:bg-primary hover:scale-110 transition-all group"
+              aria-label="LinkedIn"
             >
-              <FaLinkedin className="text-xl text-primary hover:text-white" />
+              <FaLinkedin className="text-xl text-primary group-hover:text-white transition-colors" />
             </a>
           </div>
-          <p className="font-semibold text-gray-700">Copyright © 2024 - All rights reserved by WarmPaws Pet Care</p>
+          <p className="font-semibold text-gray-700">
+            Copyright © {new Date().getFullYear()} - All rights reserved by WarmPaws Pet Care
+          </p>
           <p className="text-sm text-gray-500">Made with ❤️ for pet lovers everywhere</p>
         </aside>
       </div>

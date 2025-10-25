@@ -45,24 +45,45 @@ const Navbar = () => {
         <div className="ml-4">
           {isLoggedIn ? (
             <div className="flex items-center gap-3">
+              {/* User Avatar with Display Name on Hover */}
               <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar hover:ring-4 hover:ring-primary/20 transition-all">
+                <label 
+                  tabIndex={0} 
+                  className="btn btn-ghost btn-circle avatar hover:ring-4 hover:ring-primary/20 transition-all group relative"
+                  title={user?.displayName}
+                >
                   <div className="w-10 rounded-full ring-2 ring-primary ring-offset-2 hover:scale-110 transition-transform">
                     <img src={user?.avatar} alt={user?.displayName} />
                   </div>
+                  {/* Tooltip showing display name on hover */}
+                  <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+                    {user?.displayName}
+                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></div>
+                  </div>
                 </label>
-                <ul tabIndex={0} className="mt-3 z-[1] p-3 shadow-2xl menu menu-sm dropdown-content bg-white rounded-2xl w-56 border border-gray-100">
-                  <li className="menu-title px-4 py-2">
-                    <span className="text-primary font-bold flex items-center gap-2">
-                      <FaUser />
-                      {user?.displayName}
-                    </span>
+                <ul tabIndex={0} className="mt-3 z-[1] p-3 shadow-2xl menu menu-sm dropdown-content bg-white rounded-2xl w-64 border border-gray-100">
+                  <li className="menu-title px-4 py-3 bg-primary/5 rounded-xl mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="w-12 rounded-full ring-2 ring-primary">
+                          <img src={user?.avatar} alt={user?.displayName} />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-primary font-bold block text-sm">
+                          {user?.displayName}
+                        </span>
+                        <span className="text-gray-500 text-xs block">
+                          {user?.email}
+                        </span>
+                      </div>
+                    </div>
                   </li>
                   <div className="divider my-1"></div>
                   <li>
                     <Link to="/my-profile" className="hover:bg-primary/10 text-gray-700 rounded-xl flex items-center gap-2 py-3">
                       <FaUser className="text-primary" />
-                      Profile
+                      My Profile
                     </Link>
                   </li>
                   <li>
@@ -73,10 +94,13 @@ const Navbar = () => {
                   </li>
                   <div className="divider my-1"></div>
                   <li>
-                    <a onClick={logout} className="hover:bg-error/10 text-error rounded-xl flex items-center gap-2 py-3">
+                    <button 
+                      onClick={logout} 
+                      className="hover:bg-error/10 text-error rounded-xl flex items-center gap-2 py-3 w-full text-left"
+                    >
                       <FaSignOutAlt />
                       Logout
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -85,11 +109,11 @@ const Navbar = () => {
             <div className="flex gap-2">
               <Link to="/login" className="btn btn-ghost btn-sm text-gray-700 hover:bg-primary/5 hover:text-primary rounded-xl flex items-center gap-2">
                 <FaSignInAlt />
-                Login
+                <span className="hidden sm:inline">Login</span>
               </Link>
               <Link to="/register" className="btn btn-primary btn-sm shadow-md hover:shadow-lg hover:scale-105 transition-all rounded-xl flex items-center gap-2">
                 <FaUserPlus />
-                Register
+                <span className="hidden sm:inline">Register</span>
               </Link>
             </div>
           )}
