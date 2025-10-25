@@ -11,6 +11,7 @@ import ServiceDetails from './pages/ServiceDetails';
 import MyProfile from './pages/MyProfile';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path="/my-profile" element={<MyProfile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
             </Routes>
           </main>
           <Footer />

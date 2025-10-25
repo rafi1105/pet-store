@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSpring, animated } from '@react-spring/web';
-import { FaUser, FaEnvelope, FaLock, FaUserPlus, FaSignInAlt, FaPaw, FaCheckCircle, FaImage } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaLock, FaUserPlus, FaSignInAlt, FaPaw, FaCheckCircle, FaImage, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
 
@@ -19,6 +19,8 @@ const Register = () => {
     photoURL: '',
     password: ''
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   // Spring animation for the form
   const formSpring = useSpring({
@@ -238,15 +240,22 @@ const Register = () => {
                 </label>
                 <div className="relative">
                   <input 
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="Create a strong password" 
-                    className="input input-bordered w-full pl-12 focus:ring-4 focus:ring-secondary/20 focus:border-secondary rounded-xl bg-gray-50" 
+                    className="input input-bordered w-full pl-12 pr-12 focus:ring-4 focus:ring-secondary/20 focus:border-secondary rounded-xl bg-gray-50" 
                     value={formData.password}
                     onChange={handleInputChange}
                     required 
                   />
                   <FaLock className="absolute left-4 top-4 text-gray-400" />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-4 text-gray-400 hover:text-secondary transition-colors"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
                 </div>
                 <label className="label">
                   <span className="label-text-alt text-gray-500">Must be at least 6 characters with uppercase & lowercase</span>

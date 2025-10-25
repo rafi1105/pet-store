@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
-import { FaEnvelope, FaLock, FaSignInAlt, FaPaw } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaSignInAlt, FaPaw, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
 
@@ -17,6 +17,8 @@ const Login = () => {
     email: '',
     password: ''
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const from = location.state?.from?.pathname || '/';
 
@@ -155,18 +157,31 @@ const Login = () => {
               </label>
               <div className="relative">
                 <input 
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Enter your password" 
-                  className="input input-bordered w-full pl-12 focus:ring-4 focus:ring-primary/20 focus:border-primary rounded-xl bg-gray-50" 
+                  className="input input-bordered w-full pl-12 pr-12 focus:ring-4 focus:ring-primary/20 focus:border-primary rounded-xl bg-gray-50" 
                   value={formData.password}
                   onChange={handleInputChange}
                   required 
                 />
                 <FaLock className="absolute left-4 top-4 text-gray-400" />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-4 text-gray-400 hover:text-primary transition-colors"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
               </div>
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover text-primary font-medium">Forgot password?</a>
+                <Link 
+                  to="/forgot-password" 
+                  state={{ email: formData.email }}
+                  className="label-text-alt link link-hover text-primary font-medium"
+                >
+                  Forgot password?
+                </Link>
               </label>
             </div>
             

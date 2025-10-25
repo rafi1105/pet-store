@@ -4,11 +4,19 @@ import { useSpring, animated } from '@react-spring/web';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import toast from 'react-hot-toast';
-import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendar, FaEdit, FaCheckCircle, FaClock, FaExclamationCircle } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendar, FaEdit, FaCheckCircle, FaClock, FaExclamationCircle, FaTimes, FaSave, FaImage } from 'react-icons/fa';
+import { updateProfile } from 'firebase/auth';
+import { auth } from '../firebase/firebase.config';
 
 const MyProfile = () => {
-  const { user, isLoggedIn } = useAuth();
+  const { user, isLoggedIn, login } = useAuth();
   const [imgError, setImgError] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [updating, setUpdating] = useState(false);
+  const [formData, setFormData] = useState({
+    displayName: '',
+    photoURL: ''
+  });
 
   useEffect(() => {
     AOS.init({
@@ -19,11 +27,58 @@ const MyProfile = () => {
 
   // Handle update profile button click
   const handleUpdateProfile = () => {
-    toast.success('Profile update feature coming soon!', {
-      duration: 3000,
-      position: 'top-center',
-      icon: '🚀',
+    setFormData({
+      displayName: user?.displayName || '',
+      photoURL: user?.avatar || ''
     });
+    setShowUpdateModal(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmitUpdate = async (e) => {
+    e.preventDefault();
+    setUpdating(true);
+
+    try {
+      // Update Firebase Auth profile if user is authenticated with Firebase
+      if (auth.currentUser) {
+        await updateProfile(auth.currentUser, {
+          displayName: formData.displayName,
+          photoURL: formData.photoURL
+        });
+      }
+
+      // Update local user context
+      const updatedUser = {
+        ...user,
+        displayName: formData.displayName,
+        avatar: formData.photoURL
+      };
+      login(updatedUser);
+
+      toast.success('Profile updated successfully! 🎉', {
+        duration: 3000,
+        position: 'top-center',
+      });
+
+      setShowUpdateModal(false);
+      setImgError(false); // Reset image error state
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      toast.error('Failed to update profile. Please try again.', {
+        duration: 3000,
+        position: 'top-center',
+      });
+    } finally {
+      setUpdating(false);
+    }
   };
 
   // Default user data if not logged in
@@ -220,6 +275,94 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
+
+      {/* Update Profile Modal */}
+      {showUpdateModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate__animated animate__fadeIn">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 animate__animated animate__zoomIn">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                <FaEdit className="text-primary" />
+                Update Profile
+              </h3>
+              <button
+                onClick={() => setShowUpdateModal(false)}
+                className="btn btn-ghost btn-sm btn-circle hover:bg-gray-100"
+              >
+                <FaTimes className="text-xl" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitUpdate} className="space-y-5">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold text-gray-700 flex items-center gap-2">
+                    <FaUser className="text-primary" />
+                    Display Name
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  name="displayName"
+                  placeholder="Enter your name"
+                  className="input input-bordered w-full focus:ring-4 focus:ring-primary/20 focus:border-primary rounded-xl bg-gray-50"
+                  value={formData.displayName}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold text-gray-700 flex items-center gap-2">
+                    <FaImage className="text-primary" />
+                    Photo URL
+                  </span>
+                </label>
+                <input
+                  type="url"
+                  name="photoURL"
+                  placeholder="https://example.com/your-photo.jpg"
+                  className="input input-bordered w-full focus:ring-4 focus:ring-primary/20 focus:border-primary rounded-xl bg-gray-50"
+                  value={formData.photoURL}
+                  onChange={handleInputChange}
+                />
+                <label className="label">
+                  <span className="label-text-alt text-gray-500">Leave empty to use auto-generated avatar</span>
+                </label>
+              </div>
+
+              <div className="flex gap-3 mt-6">
+                <button
+                  type="button"
+                  onClick={() => setShowUpdateModal(false)}
+                  className="btn btn-ghost flex-1 rounded-xl"
+                  disabled={updating}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary flex-1 rounded-xl gap-2"
+                  disabled={updating}
+                >
+                  {updating ? (
+                    <>
+                      <span className="loading loading-spinner loading-sm"></span>
+                      Updating...
+                    </>
+                  ) : (
+                    <>
+                      <FaSave />
+                      Save Changes
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
