@@ -25,10 +25,18 @@ const Login = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       
-      const userData = {
+      // Log user data for debugging
+      console.log('Google Sign-In Success:', {
         displayName: user.displayName,
         email: user.email,
-        avatar: user.photoURL,
+        photoURL: user.photoURL,
+        phoneNumber: user.phoneNumber
+      });
+      
+      const userData = {
+        displayName: user.displayName || 'User',
+        email: user.email,
+        avatar: user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || user.email) + '&background=0D8ABC&color=fff',
         phone: user.phoneNumber || 'Not provided',
         address: 'Not provided',
         memberSince: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })

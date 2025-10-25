@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FaHome, FaConciergeBell, FaUser, FaSignInAlt, FaUserPlus, FaSignOutAlt, FaCog, FaPaw } from 'react-icons/fa';
 
 const Navbar = () => {
   const { user, isLoggedIn, logout } = useAuth();
+  const [imgError, setImgError] = useState(false);
+
+  // Fallback avatar if image fails to load
+  const handleImageError = () => {
+    setImgError(true);
+  };
+
+  const getAvatarUrl = () => {
+    if (imgError || !user?.avatar) {
+      return `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.displayName || 'User')}&background=0D8ABC&color=fff&size=200`;
+    }
+    return user.avatar;
+  };
 
   return (
     <nav className="navbar bg-white shadow-md px-4 lg:px-8 sticky top-0 z-50 border-b-2 border-primary/10">
@@ -52,8 +65,14 @@ const Navbar = () => {
                   className="btn btn-ghost btn-circle avatar hover:ring-4 hover:ring-primary/20 transition-all group relative"
                   title={user?.displayName}
                 >
-                  <div className="w-10 rounded-full ring-2 ring-primary ring-offset-2 hover:scale-110 transition-transform">
-                    <img src={user?.avatar} alt={user?.displayName} />
+                  <div className="w-10 rounded-full ring-2 ring-primary ring-offset-2 hover:scale-110 transition-transform overflow-hidden bg-primary/10">
+                    <img 
+                      src={getAvatarUrl()} 
+                      alt={user?.displayName}
+                      onError={handleImageError}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   {/* Tooltip showing display name on hover */}
                   <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
@@ -65,15 +84,21 @@ const Navbar = () => {
                   <li className="menu-title px-4 py-3 bg-primary/5 rounded-xl mb-2">
                     <div className="flex items-center gap-3">
                       <div className="avatar">
-                        <div className="w-12 rounded-full ring-2 ring-primary">
-                          <img src={user?.avatar} alt={user?.displayName} />
+                        <div className="w-12 rounded-full ring-2 ring-primary overflow-hidden bg-primary/10">
+                          <img 
+                            src={getAvatarUrl()} 
+                            alt={user?.displayName}
+                            onError={handleImageError}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-cover"
+                          />
                         </div>
                       </div>
                       <div className="flex-1">
                         <span className="text-primary font-bold block text-sm">
                           {user?.displayName}
                         </span>
-                        <span className="text-gray-500 text-xs block">
+                        <span className="text-gray-500 text-xs block truncate">
                           {user?.email}
                         </span>
                       </div>

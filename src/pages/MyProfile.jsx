@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useSpring, animated } from '@react-spring/web';
 import AOS from 'aos';
@@ -7,6 +7,7 @@ import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendar, FaEdit, FaChec
 
 const MyProfile = () => {
   const { user, isLoggedIn } = useAuth();
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     AOS.init({
@@ -19,10 +20,22 @@ const MyProfile = () => {
   const displayUser = user || {
     displayName: 'Guest User',
     email: 'guest@example.com',
-    avatar: 'https://i.pravatar.cc/150?img=3',
+    avatar: 'https://ui-avatars.com/api/?name=Guest+User&background=0D8ABC&color=fff&size=200',
     phone: '+1 (555) 123-4567',
     address: '123 Pet Street, Animal City, PC 12345',
     memberSince: 'January 2024'
+  };
+
+  // Fallback avatar if image fails to load
+  const handleImageError = () => {
+    setImgError(true);
+  };
+
+  const getAvatarUrl = () => {
+    if (imgError || !displayUser.avatar) {
+      return `https://ui-avatars.com/api/?name=${encodeURIComponent(displayUser.displayName || 'User')}&background=0D8ABC&color=fff&size=200`;
+    }
+    return displayUser.avatar;
   };
 
   const bookings = [
@@ -71,8 +84,14 @@ const MyProfile = () => {
               <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-8" data-aos="fade-right">
                 <div className="text-center">
                   <animated.div style={avatarSpring} className="avatar online mb-6">
-                    <div className="w-32 rounded-full ring-4 ring-primary ring-offset-4 ring-offset-white hover:scale-110 transition-transform">
-                      <img src={displayUser.avatar} alt={displayUser.displayName} />
+                    <div className="w-32 rounded-full ring-4 ring-primary ring-offset-4 ring-offset-white hover:scale-110 transition-transform overflow-hidden bg-primary/10">
+                      <img 
+                        src={getAvatarUrl()} 
+                        alt={displayUser.displayName}
+                        onError={handleImageError}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </animated.div>
                   <h2 className="text-2xl font-bold text-gray-800 mb-2">{displayUser.displayName}</h2>
